@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const allCards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
+const allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-bomb", "fa-leaf", "fa-bomb", "fa-bolt", "fa-bicycle", "fa-paper-plane-o", "fa-cube"];
 
 /*
  * Display the cards on the page
@@ -9,7 +9,25 @@ const allCards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+function generateBoard() {
+  shuffle(allCards);
+  const fragment = document.createDocumentFragment();
+  const cardDeck = document.querySelector('.deck');
 
+  for (let i = 0; i < 16; i++) {
+    const newLi = document.createElement('li');
+    newLi.classList.add('card');
+
+    const newI = document.createElement('i');
+    newI.classList.add('fa');
+    newI.classList.add(allCards[i]);
+
+    newLi.appendChild(newI);
+    fragment.appendChild(newLi);
+  }
+
+  cardDeck.appendChild(fragment);
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -37,3 +55,5 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+generateBoard();
