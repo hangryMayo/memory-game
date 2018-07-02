@@ -17,6 +17,7 @@ function generateBoard() {
   for (let i = 0; i < 16; i++) {
     const newLi = document.createElement('li');
     newLi.classList.add('card');
+    newLi.addEventListener('click', flipCard);
 
     const newI = document.createElement('i');
     newI.classList.add('fa');
