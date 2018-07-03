@@ -11,6 +11,11 @@ const allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-
  */
 function generateBoard() {
   shuffle(allCards);
+  createDeck();
+
+}
+
+function createDeck() {
   const fragment = document.createDocumentFragment();
   const cardDeck = document.querySelector('.deck');
 
