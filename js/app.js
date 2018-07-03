@@ -55,6 +55,10 @@ function shuffle(array) {
     return array;
 }
 
+function openList() {
+  const openCards = document.querySelectorAll('.open');
+  console.log(openCards);
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
