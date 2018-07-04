@@ -63,9 +63,14 @@ function openList() {
 
 function resetGame(){
   const childElement = cardDeck.querySelectorAll('li');
+
   childElement.forEach(function(card) {
     card.classList.remove('open', 'show');
   });
+
+  cardDeck.innerHTML = '';
+  shuffle(allCards);
+  createDeck();
 }
 
 /*
