@@ -62,9 +62,9 @@ function openList() {
 }
 
 function resetGame(){
-  const childElement = cardDeck.querySelectorAll('li');
+  const allCards = cardDeck.querySelectorAll('li');
 
-  childElement.forEach(function(card) {
+  allCards.forEach(function(card) {
     card.classList.remove('open', 'show');
   });
 
