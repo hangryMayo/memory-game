@@ -61,6 +61,13 @@ function openList() {
   console.log(openCards);
 }
 
+function resetGame(){
+  const childElement = cardDeck.querySelectorAll('li');
+  childElement.forEach(function(card) {
+    card.classList.remove('open', 'show');
+  });
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
