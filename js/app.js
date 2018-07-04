@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-bomb", "fa-leaf", "fa-bomb", "fa-bolt", "fa-bicycle", "fa-paper-plane-o", "fa-cube"];
+const cardIcons = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-bomb", "fa-leaf", "fa-bomb", "fa-bolt", "fa-bicycle", "fa-paper-plane-o", "fa-cube"];
 
   const cardDeck = document.querySelector('.deck');
   const resetButton = document.querySelector('.restart');
@@ -12,7 +12,7 @@ const allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-
  *   - add each card's HTML to the page
  */
 function generateBoard() {
-  shuffle(allCards);
+  shuffle(cardIcons);
   createDeck();
 
 }
@@ -27,7 +27,7 @@ function createDeck() {
 
     const newI = document.createElement('i');
     newI.classList.add('fa');
-    newI.classList.add(allCards[i]);
+    newI.classList.add(cardIcons[i]);
 
     newLi.appendChild(newI);
     fragment.appendChild(newLi);
@@ -69,7 +69,7 @@ function resetGame(){
   });
 
   cardDeck.innerHTML = '';
-  shuffle(allCards);
+  shuffle(cardIcons);
   createDeck();
 }
 
