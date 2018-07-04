@@ -85,3 +85,5 @@ function resetGame(){
  */
 
 generateBoard();
+
+resetButton.addEventListener('click', resetGame);
