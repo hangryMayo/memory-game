@@ -3,6 +3,7 @@
  */
 const allCards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-bomb", "fa-leaf", "fa-bomb", "fa-bolt", "fa-bicycle", "fa-paper-plane-o", "fa-cube"];
 
+  const cardDeck = document.querySelector('.deck');
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -17,7 +18,6 @@ function generateBoard() {
 
 function createDeck() {
   const fragment = document.createDocumentFragment();
-  const cardDeck = document.querySelector('.deck');
 
   for (let i = 0; i < 16; i++) {
     const newLi = document.createElement('li');
