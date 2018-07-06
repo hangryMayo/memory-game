@@ -5,13 +5,15 @@ const cardIcons = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa
 
 const cardDeck = document.querySelector('.deck');
 const resetButton = document.querySelector('.restart');
-const allCards = cardDeck.querySelectorAll('li');
+let allCards = cardDeck.childNodes;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ 
 function generateBoard() {
   shuffle(cardIcons);
   createDeck();
