@@ -5,7 +5,9 @@ const cardIcons = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa
 
 const cardDeck = document.querySelector('.deck');
 const resetButton = document.querySelector('.restart');
-let allCards = cardDeck.childNodes;
+let cardElements = document.getElementsByClassName('card');
+let allCards = Array.from(cardElements);
+let openCards = [];
 
 /*
  * Display the cards on the page
@@ -13,11 +15,10 @@ let allCards = cardDeck.childNodes;
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
- 
+
 function generateBoard() {
   shuffle(cardIcons);
   createDeck();
-
 }
 
 function createDeck() {
@@ -27,6 +28,7 @@ function createDeck() {
     const newLi = document.createElement('li');
     newLi.classList.add('card');
     newLi.addEventListener('click', flipCard);
+    newLi.addEventListener('click', openList);
 
     const newI = document.createElement('i');
     newI.classList.add('fa');
@@ -60,8 +62,35 @@ function shuffle(array) {
 }
 
 function openList() {
-  const openCards = document.querySelectorAll('.open');
-  console.log(openCards);
+  openCards.push(this);
+
+  if (openCards.length === 2) {
+    if (openCards[0].innerHTML === openCards[1].innerHTML) {
+      cardMatch();
+      console.log("IT'S A MATCH");
+    } else {
+      cardClash();
+      console.log("NOT A MATCH");
+    }
+  }
+}
+
+function cardMatch() {
+  openCards[0].classList.add('match');
+  openCards[0].classList.remove('open', 'show');
+
+  openCards[1].classList.add('match');
+  openCards[1].classList.remove('open', 'show');
+
+  openCards = [];
+}
+
+function cardClash() {
+  setTimeout(function() {
+    openCards[0].classList.remove('open', 'show');
+    openCards[1].classList.remove('open', 'show');
+    openCards = [];
+  }, 600);
 }
 
 function resetGame(){
@@ -70,8 +99,7 @@ function resetGame(){
   });
 
   cardDeck.innerHTML = '';
-  shuffle(cardIcons);
-  createDeck();
+  generateBoard();
 }
 
 /*
@@ -85,6 +113,6 @@ function resetGame(){
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-generateBoard();
+window.onload = generateBoard();
 
 resetButton.addEventListener('click', resetGame);
