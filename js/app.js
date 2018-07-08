@@ -14,11 +14,19 @@ let moves = 0;
 const starElements = document.querySelectorAll('.fa-star');
 let stars = Array.from(starElements);
 
+// timer variables
+const timerContainer = document.querySelector('.timer');
+let seconds = 0, minutes = 0;
+let timer;
+
 function generateBoard() {
   cardDeck.innerHTML = '';
 
   shuffle(cardIcons);
   createDeck();
+  // reset timer
+  timerContainer.innerHTML = '00:00:00';
+  clearInterval(timer);
   // reset move count
   moves = 0;
   moveContainer.innerHTML = moves;
@@ -102,10 +110,28 @@ function cardClash() {
   }, 600);
 }
 
+function timerStart() {
+  seconds = 0, minutes = 0;
+  timer = setInterval(function(){
+        timerContainer.innerHTML = '00:' + (minutes ? (minutes > 9 ? minutes : '0' + minutes) : '00') + ':' + (seconds > 9 ? seconds : '0' + seconds);
+        seconds++;
+        if(seconds == 60){
+            minutes++;
+            seconds = 0;
+        }
+        if(minutes == 60){
+            minutes = 0;
+        }
+    }, 1000);
+}
+
 function moveCounter() {
   moves++;
   moveContainer.innerHTML = moves;
-
+  // start timer based on moves
+  if (moves == 1) {
+    timerStart();
+  }
   // star rating  based on moves
   if (moves > 8 && moves <= 16) {
     stars[2].style.visibility = 'hidden';
