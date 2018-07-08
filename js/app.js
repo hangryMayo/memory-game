@@ -17,6 +17,7 @@ let openCards = [];
  */
 
 function generateBoard() {
+  cardDeck.innerHTML = '';
   shuffle(cardIcons);
   createDeck();
 }
@@ -39,11 +40,6 @@ function createDeck() {
   }
 
   cardDeck.appendChild(fragment);
-}
-
-function flipCard() {
-  this.classList.add('open');
-  this.classList.add('show');
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -75,6 +71,11 @@ function openList() {
   }
 }
 
+function flipCard() {
+  this.classList.add('open');
+  this.classList.add('show');
+}
+
 function cardMatch() {
   openCards[0].classList.add('match');
   openCards[0].classList.remove('open', 'show');
@@ -98,7 +99,6 @@ function resetGame(){
     card.classList.remove('open', 'show');
   });
 
-  cardDeck.innerHTML = '';
   generateBoard();
 }
 
