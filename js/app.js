@@ -10,14 +10,22 @@ let openCards = [];
 const moveContainer = document.querySelector('.moves');
 let moves = 0;
 
+// star variable
+const starElements = document.querySelectorAll('.fa-star');
+let stars = Array.from(starElements);
+
 function generateBoard() {
   cardDeck.innerHTML = '';
-  // reset move count
-  moves = 0;
-  moveContainer.innerHTML = moves;
 
   shuffle(cardIcons);
   createDeck();
+  // reset move count
+  moves = 0;
+  moveContainer.innerHTML = moves;
+  // reset star count
+  for (i = 0; i < 3; i++) {
+    stars[i].style.visibility = 'visible';
+  }
 }
 
 function createDeck() {
@@ -97,6 +105,14 @@ function cardClash() {
 function moveCounter() {
   moves++;
   moveContainer.innerHTML = moves;
+
+  // star rating  based on moves
+  if (moves > 8 && moves <= 16) {
+    stars[2].style.visibility = 'hidden';
+  } else if (moves > 16) {
+    stars[2].style.visibility = 'hidden';
+    stars[1].style.visibility = 'hidden';
+  }
 }
 
 function resetGame(){
