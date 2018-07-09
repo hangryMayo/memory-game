@@ -26,7 +26,7 @@ let timer;
 
 // modal variables
 const modal = document.querySelector('.modal');
-const playAgain = document.getElementById('play-again');
+const playAgainButton = document.getElementById('play-again');
 const close = document.getElementById('close');
 
 function generateBoard() {
@@ -168,7 +168,7 @@ window.onload = generateBoard();
 
 resetButton.addEventListener('click', resetGame);
 
-function congrats() {
+function openModal() {
   if (matchCards.length == 2) {
     clearInterval(timer);
     totalTime.innerHTML = timerContainer.innerHTML;
@@ -178,4 +178,12 @@ function congrats() {
     totalStars.innerHTML = starContainer.innerHTML;
 
   }
+}
+
+function closeModal() {
+
+}
+
+function playAgain() {
+
 }
