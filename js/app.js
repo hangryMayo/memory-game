@@ -5,6 +5,7 @@ const resetButton = document.querySelector('.restart');
 let cardElements = document.getElementsByClassName('card');
 let allCards = Array.from(cardElements);
 let openCards = [];
+let matchCards = [];
 
 // move variables
 const moveContainer = document.querySelector('.moves');
@@ -18,6 +19,11 @@ let stars = Array.from(starElements);
 const timerContainer = document.querySelector('.timer');
 let seconds = 0, minutes = 0;
 let timer;
+
+// modal variables
+const modal = document.querySelector('.modal');
+const playAgain = document.getElementById('play-again');
+const close = document.getElementById('close');
 
 function generateBoard() {
   cardDeck.innerHTML = '';
@@ -94,9 +100,12 @@ function flipCard() {
 
 function cardMatch() {
   openCards[0].classList.add('match');
-  openCards[0].classList.remove('open', 'show');
-
   openCards[1].classList.add('match');
+
+  matchCards.push(openCards[0]);
+  matchCards.push(openCards[1]);
+
+  openCards[0].classList.remove('open', 'show');
   openCards[1].classList.remove('open', 'show');
 
   openCards = [];
