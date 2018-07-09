@@ -10,8 +10,12 @@ let matchCards = [];
 // move variables
 const moveContainer = document.querySelector('.moves');
 let moves = 0;
+let totalTime = document.querySelector('#totalTime');
+let totalStars = document.querySelector('#totalStars');
+let totalMoves = document.querySelector('#totalMoves');
 
 // star variable
+const starContainer = document.querySelector('.stars');
 const starElements = document.querySelectorAll('.fa-star');
 let stars = Array.from(starElements);
 
@@ -27,6 +31,8 @@ const close = document.getElementById('close');
 
 function generateBoard() {
   cardDeck.innerHTML = '';
+  // reset match card
+  matchCards = [];
 
   shuffle(cardIcons);
   createDeck();
@@ -161,3 +167,15 @@ function resetGame(){
 window.onload = generateBoard();
 
 resetButton.addEventListener('click', resetGame);
+
+function congrats() {
+  if (matchCards.length == 2) {
+    clearInterval(timer);
+    totalTime.innerHTML = timerContainer.innerHTML;
+    // add a class of show
+
+    totalMoves.innerHTML = moves;
+    totalStars.innerHTML = starContainer.innerHTML;
+
+  }
+}

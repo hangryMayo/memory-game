@@ -112,3 +112,8 @@ div .timer {
   display: inline-block;
   float: left;
 }
+
+#totalStars li {
+  list-style:  none;
+  display: inline-block;
+}
