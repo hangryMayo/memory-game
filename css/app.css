@@ -79,6 +79,7 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    pointer-events: none;
 }
 
 /*
@@ -109,11 +110,58 @@ h1 {
 }
 
 div .timer {
-  display: inline-block;
-  float: left;
+    display: inline-block;
+    float: left;
 }
 
 #totalStars li {
-  list-style:  none;
-  display: inline-block;
+    list-style:  none;
+    display: inline-block;
+}
+
+.modal {
+    width: 450px;
+    height: 550px;
+    font-size: 30px;
+    margin: 70px auto;
+    padding: 30px 60px 60px 60px;
+    background: white;
+    box-shadow: 2px 2px 2px 2px lightgrey;
+    border-radius: 20px;
+}
+
+.overlay {
+    position: fixed;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.show {
+    visibility: visible !important;
+    opacity: 100 !important;
+}
+
+.disable {
+    pointer-events: none;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
 }
