@@ -1,26 +1,19 @@
-// array of all card icons
+// array of card icons
 const cardIcons = [
   "fa-diamond",
   "fa-paper-plane-o",
   "fa-anchor",
   "fa-bolt",
   "fa-cube",
-  "fa-anchor",
   "fa-leaf",
   "fa-bicycle",
-  "fa-diamond",
   "fa-bomb",
-  "fa-leaf",
-  "fa-bomb",
-  "fa-bolt",
-  "fa-bicycle",
-  "fa-paper-plane-o",
-  "fa-cube"
 ];
-
+// array includes duplicates of all icons
+const allCardIcons = cardIcons.concat(cardIcons);
 // li.card parent container
 const cardDeck = document.querySelector('.deck');
-
+// reset button
 const resetButton = document.querySelector('.restart');
 
 // card variables
@@ -56,10 +49,12 @@ const playAgainButton = document.getElementById('play-again');
 function generateBoard() {
   // clears board
   cardDeck.innerHTML = '';
-  // reset match card
+  // reset openCards Array
+  openCards = [];
+  // reset matched card
   matchCards = [];
-  // shuffles card's icons
-  shuffle(cardIcons);
+  // shuffle card's icons
+  shuffle(allCardIcons);
   createDeck();
   // reset timer
   clearInterval(timer);
@@ -74,15 +69,16 @@ function generateBoard() {
 }
 // @description creates and assigns cards with icons and adds listener for cards
 function createDeck() {
+  // @description fragment document to reduce reflow and repaint
   const fragment = document.createDocumentFragment();
-  // @description creates & appends li, i elements to hold cardIcons
+  // @description creates & appends li, i elements to hold allCardIcons
   for (let i = 0; i < 16; i++) {
     const newLi = document.createElement('li');
     newLi.classList.add('card');
 
     const newI = document.createElement('i');
     newI.classList.add('fa');
-    newI.classList.add(cardIcons[i]);
+    newI.classList.add(allCardIcons[i]);
 
     // listens for clicks on all li.cards
     newLi.addEventListener('click', flipCard);
@@ -108,6 +104,10 @@ function shuffle(array) {
     }
 
     return array;
+}
+// @description adds class open and show to reveal cards
+function flipCard() {
+  this.classList.add('open', 'show', 'disable');
 }
 // @description disables clicks while matching is occuring
 function invalidChoice() {
@@ -138,14 +138,10 @@ function openList() {
     }
   }
 }
-// @description adds class open and show to reveal cards
-function flipCard() {
-  this.classList.add('open', 'show', 'disable');
-}
 // @description adds class of match and removes class of open and show
 function cardMatch() {
-  openCards[0].classList.add('match', 'disable');
-  openCards[1].classList.add('match', 'disable');
+  openCards[0].classList.add('match');
+  openCards[1].classList.add('match');
 
   matchCards.push(openCards[0]);
   matchCards.push(openCards[1]);
@@ -159,8 +155,8 @@ function cardMatch() {
 // @description removes class open and show; openCards array reset to empty
 function cardClash() {
   setTimeout(function() {
-    openCards[0].classList.remove('open', 'show', 'disable');
-    openCards[1].classList.remove('open', 'show', 'disable');
+    openCards[0].classList.remove('open', 'show');
+    openCards[1].classList.remove('open', 'show');
 
     openCards = [];
     validChoice();
